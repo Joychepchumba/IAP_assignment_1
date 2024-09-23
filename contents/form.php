@@ -28,7 +28,7 @@ class form{
                     <label for="username" class="form-label">Username:</label>
                     <input type="text" name="username" class="form-control form-control-lg" maxlength="50" id="username" placeholder="Enter your username">
                 </div>
-                <button type="submit" name="signup" class="btn btn-primary">Submit</button>
+                <button type="submit" name="signup" class="btn btn-danger">Submit</button>
                 </fieldset>  
             </form>
           </div>
