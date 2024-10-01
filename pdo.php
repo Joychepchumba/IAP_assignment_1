@@ -7,7 +7,9 @@ $dbname="api_d";
 
 try {
   // Create the connection
-  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // DSN parts: 1. DB driver : mysqli 2. host = localhost
+  // 3. db schema /name = api_d 
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);// The DSN 
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   echo "Connected successfully";
