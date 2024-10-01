@@ -18,7 +18,7 @@ public function main_menu(){
 public function main_right_menu(){
 ?>
     <div class="topnav-right">
-        <a href= "./">Sign up</a>
+        <a href= "signup.php">Sign up</a>
         <a href= "">Sign in</a>
 
 </div>
