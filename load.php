@@ -1,10 +1,11 @@
 <?php
 
 // Class Auto Load 
+session_start();
 
 function classAutoLoad($classname){
 
-    $directories = ["contents", "layouts", "menus","Processes"];
+    $directories = ["contents", "layouts", "menus","Processes","global"];
 
     foreach($directories AS $dir){
         $filename = dirname(__FILE__) . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $classname . ".php";
@@ -15,6 +16,7 @@ function classAutoLoad($classname){
 }
 
 spl_autoload_register('classAutoLoad');
+    $ObjGlob = new fnc();
 
 // Create instances of all classes
     $ObjLayouts = new layouts();
@@ -23,13 +25,13 @@ spl_autoload_register('classAutoLoad');
     $ObjCont = new contents();
     $ObjForm= new form();
     $ObjAuth = new auth();
-    
+   
 
 require "includes/constants.php";
 require "includes/dbConnection.php";
 
 $conn = new dbConnection(DBTYPE, HOSTNAME, DBPORT, HOSTUSER, HOSTPASS, DBNAME);
-$ObjAuth->signup($conn);
+$ObjAuth->signup($conn, $ObjGlob);
 
 
 
