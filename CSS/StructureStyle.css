@@ -34,5 +34,18 @@ body{
     background-color: black;
     padding: 20px;
     text-align: center;
-    color:teal;
+    color:white;
 }
+/* Ensure the image covers the full right half */
+#img_sign {
+        object-fit: cover;
+        /* Ensures it covers the entire width of the container */
+    }
+
+.container {
+        padding: 0;
+        margin: 0;
+    }
+    #form{
+        background-color: #cfced4;
+    }
