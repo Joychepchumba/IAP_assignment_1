@@ -1,5 +1,5 @@
 <?php
-    class dbConnection{
+class dbConnection{
         private $connection;
 
         private $db_type;
@@ -220,4 +220,30 @@
                 break;
         }
     }
+    public function set_password($username, $password) {
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+        // Prepare the update statement
+        $sql = "UPDATE users SET password = ? WHERE username = ?";
+    
+        switch ($this->db_type) {
+            case 'PDO':
+                try {
+                    $stmt = $this->connection->prepare($sql);
+                    $stmt->execute([$hashedPassword, $username]);
+                    return true; // Successfully updated
+                } catch (PDOException $e) {
+                    return "Error: " . $e->getMessage();
+                }
+                break;
+    
+            case 'MySQLi':
+                $stmt = $this->connection->prepare($sql);
+                $stmt->bind_param('ss', $hashedPassword, $username);
+                return $stmt->execute() ? true : "Error: " . $stmt->error;
+                break;
+        }
+    }
+    
 }
