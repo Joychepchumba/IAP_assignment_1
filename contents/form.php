@@ -75,8 +75,44 @@ class form {
       </div>
     </div>
      <!-- Bootstrap JS for functionality -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
-       
-<?php
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
+    
+   <?php }
+   public function set_password_form($ObjGlob) {
+    ?>
+    <div class="row align-items-md-stretch">
+        <div class="col-md-9">
+            <div class="h-100 p-5 text-bg-dark rounded-3">
+                <h2>Set Your Password</h2>
+
+                <?php
+                print $ObjGlob->getMsg('msg');
+                $err = $ObjGlob->getMsg('errors');?>
+                
+                <form action="<?php print basename($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password:</label>
+                        <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" name="set_password" class="btn btn-primary">Set Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
 }
+
 }
+
+
+
+
+

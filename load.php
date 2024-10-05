@@ -2,7 +2,9 @@
 
 // Class Auto Load 
 session_start();
-
+require "includes/constants.php";
+require "includes/dbConnection.php";
+require "lang/en.php";
 function classAutoLoad($classname){
 
     $directories = ["contents", "layouts", "menus","Processes","global"];
@@ -17,6 +19,7 @@ function classAutoLoad($classname){
 
 spl_autoload_register('classAutoLoad');
     $ObjGlob = new fnc();
+    $ObjSendMail = new SendMail();
 
 // Create instances of all classes
     $ObjLayouts = new layouts();
@@ -27,11 +30,10 @@ spl_autoload_register('classAutoLoad');
     $ObjAuth = new auth();
    
 
-require "includes/constants.php";
-require "includes/dbConnection.php";
 
 $conn = new dbConnection(DBTYPE, HOSTNAME, DBPORT, HOSTUSER, HOSTPASS, DBNAME);
-$ObjAuth->signup($conn, $ObjGlob);
+$ObjAuth->signup($conn, $ObjGlob, $ObjSendMail, $lang, $conf);
+$ObjAuth->verify_code($conn, $ObjGlob, $ObjSendMail, $lang, $conf);
 
 
 
