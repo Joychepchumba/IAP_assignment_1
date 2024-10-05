@@ -1,0 +1,17 @@
+{
+    "name": "joych/iap_assignment_1",
+    "autoload": {
+        "psr-4": {
+            "Joych\\IapAssignment1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joychepchumba",
+            "email": "joy.kipkemboi@strathmore.edu"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
