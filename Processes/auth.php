@@ -130,4 +130,47 @@ if(!count($errors)){
         }
         }
     }
+    public function set_password($conn, $ObjGlob) {
+        $errors = array(); // Initialize errors array
+    
+        if (isset($_POST["set_password"])) {
+            // Password handling...
+            $password = $_POST["password"];
+            $confirm_password = $_POST["confirm_password"];
+    
+            // Assuming the username is stored in the session
+            if (!isset($_SESSION["username"])) {
+                $errors['username'] = "Username is not set.";
+            } else {
+                $username = $_SESSION["username"]; // Retrieve username from session
+            }
+    
+            // Validation logic...
+            if (strlen($password) < 4 || strlen($password) > 8) {
+                $errors['password_length'] = "Password must be between 4 and 8 characters.";
+            }
+            if ($password !== $confirm_password) {
+                $errors['password_match'] = "Passwords do not match.";
+            }
+    
+            // Check for errors
+            if (!count($errors)) {
+                // Call the method to set the password
+                $result = $conn->set_password($username, $password); // This will insert the hashed password
+    
+                if ($result === true) {
+                    header('Location: success_page.php'); // Redirect to a success page
+                    exit();
+                } else {
+                    $ObjGlob->setMsg('msg', 'Error setting password: ' . $result, 'invalid');
+                }
+            } else {
+                // Set error messages for the user
+                $ObjGlob->setMsg('msg', 'Error(s)', 'invalid');
+                $ObjGlob->setMsg('errors', $errors, 'invalid');
+            }
+        }
+    }
+    
 }
+
